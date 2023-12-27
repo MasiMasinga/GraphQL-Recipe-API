@@ -39,16 +39,16 @@ module.exports = {
         },
         async deleteRecipe(_, { ID }) {
             try {
-                await Recipe.findByIdAndDelete(ID);
-                return true;
+                const result = (await Recipe.deleteOne({ _id: ID })).deletedCount;
+                return result > 0 ? true : false;
             } catch (err) {
                 throw new Error(err);
             }
         },
         async editRecipe(_, { ID, recipeInput: { name, description } }) {
             try {
-                await Recipe.findByIdAndUpdate(ID, { name: name, description: description });
-                return true;
+                const result = (await Recipe.updateOne({ _id: ID }, { name: name, description: description })).modifiedCount;
+                return result > 0 ? true : false;
             } catch (err) {
                 throw new Error(err);
             }
