@@ -21,7 +21,8 @@ module.exports = {
     },
     Mutation: {
         async createRecipe(_, { recipeInput: { name, description } }) {
-            const newRecipe = new Recipe({
+
+            const createdRecipe = new Recipe({
                 name: name,
                 description: description,
                 createdAt: new Date().toISOString(),
@@ -29,7 +30,7 @@ module.exports = {
                 thumbsDown: 0,
             });
 
-            const result = await newRecipe.save();
+            const result = await createdRecipe.save();
 
             return {
                 id: result.id,

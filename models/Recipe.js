@@ -2,7 +2,7 @@ const { model, Schema } = require('mongoose');
 
 const recipeSchema = new Schema({
     name: String,
-    category: String,
+    description: String,
     createdAt: String,
     thumbsUp: Number,
     thumbsDown: Number,
